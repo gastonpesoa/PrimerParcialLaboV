@@ -11,10 +11,12 @@ import java.util.List;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
 
+    private UsuarioOnItemClick listener;
     private List<UsuarioModel> usuarios;
 
-    public UsuarioAdapter(List<UsuarioModel> usuarios) {
+    public UsuarioAdapter(List<UsuarioModel> usuarios, UsuarioOnItemClick listener) {
         this.usuarios = usuarios;
+        this.listener = listener;
     }
 
     @NonNull
@@ -23,7 +25,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
         View view = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_layout, parent, false);
-        UsuarioViewHolder holder = new UsuarioViewHolder(view);
+        UsuarioViewHolder holder = new UsuarioViewHolder(view, listener);
         return holder;
     }
 
@@ -33,6 +35,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioViewHolder> {
         holder.tvNombre.setText(usuario.getNombre());
         holder.tvTipo.setText(usuario.getTipoUsuario().toString());
         holder.tvContrasenia.setText(usuario.getContrasenia());
+        holder.setPosition(position);
     }
 
     @Override

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements UsuarioOnItemClick {
 
     private List<UsuarioModel> usuarios = new ArrayList<UsuarioModel>();
     private UsuarioAdapter adapter;
@@ -38,11 +40,21 @@ public class MainActivity extends AppCompatActivity {
         usuarios.add(new UsuarioModel("German", "juan", TipoUsuario.USUARIO));
         usuarios.add(new UsuarioModel("Rocio", "juan", TipoUsuario.ADMINISTRADOR));
 
-        this.adapter = new UsuarioAdapter(usuarios);
+        this.adapter = new UsuarioAdapter(usuarios, this);
         RecyclerView recyclerView = super.findViewById(R.id.rvUsuarios);
         recyclerView.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        UsuarioModel usuario = usuarios.get(position);
+        Log.d("main", usuario.toString());
+        /*Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("usuario", usuario);
+        startActivityForResult(intent, 101);*/
     }
 }
