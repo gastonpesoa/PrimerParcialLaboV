@@ -38,8 +38,13 @@ public class UsuarioModel implements Serializable {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuario(String tipoUsuario) {
+        if (TipoUsuario.USUARIO.toString().toLowerCase().equals(tipoUsuario.toLowerCase())){
+            this.tipoUsuario = TipoUsuario.USUARIO;
+        } else if(TipoUsuario.ADMINISTRADOR.toString().toLowerCase().equals(tipoUsuario.toLowerCase())){
+            this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
+        }
+
     }
 
     @Override

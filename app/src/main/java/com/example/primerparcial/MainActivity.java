@@ -1,9 +1,11 @@
 package com.example.primerparcial;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,9 +54,32 @@ public class MainActivity extends AppCompatActivity implements UsuarioOnItemClic
     public void onItemClick(int position) {
         UsuarioModel usuario = usuarios.get(position);
         Log.d("main", usuario.toString());
-        /*Intent intent = new Intent(this, EditActivity.class);
+        Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra("position", position);
         intent.putExtra("usuario", usuario);
-        startActivityForResult(intent, 101);*/
+        startActivityForResult(intent, 101);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == 101){
+            if (resultCode == Activity.RESULT_OK){
+                UsuarioModel usuarioUpdated = (UsuarioModel) data.getSerializableExtra("usuarioModificado");
+                int position = data.getExtras().getInt("positionModificado");
+
+                Log.d("main", " modificado: ".concat(usuarioUpdated.toString()));
+                Log.d("main", " pos: ".concat(Integer.valueOf(position).toString()));
+
+                UsuarioModel usuario = this.usuarios.get(position);
+
+                usuario.setNombre(usuarioUpdated.getNombre());
+                usuario.setContrasenia(usuarioUpdated.getContrasenia());
+                usuario.setTipoUsuario(usuarioUpdated.getTipoUsuario().toString());
+                Log.d("main", "modificado  updated: ".concat(usuario.toString()));
+
+                this.adapter.notifyDataSetChanged();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
