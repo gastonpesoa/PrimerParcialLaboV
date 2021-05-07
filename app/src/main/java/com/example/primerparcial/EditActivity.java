@@ -26,7 +26,7 @@ public class EditActivity extends AppCompatActivity {
         usuarioController.setView(usuarioView);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Editar usuario");
+        actionBar.setTitle(R.string.title_edit);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 

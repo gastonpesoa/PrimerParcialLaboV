@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Usuario"/>
+        android:text="@string/user"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contraseña"/>
+        android:text="@string/pass"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Repita la contraseña"/>
+        android:text="@string/passRep"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo:"
+            android:text="@string/type"
             android:layout_gravity="center_vertical"/>
         <RadioGroup
             android:id="@+id/rgTipo"
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_save"
-            android:text="Guardar">
+            android:text="@string/btnsave">
         </Button>
 
     </LinearLayout>
